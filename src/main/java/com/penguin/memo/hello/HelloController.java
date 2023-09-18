@@ -16,6 +16,12 @@ public class HelloController {
 	
 	
 	
+	@GetMapping("/hello/jsp")
+	public String helloJsp() {
+		
+		return "hello/hello";
+		
+	}
 	
 	
 	
