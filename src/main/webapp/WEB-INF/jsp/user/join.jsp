@@ -24,7 +24,7 @@
 				<input type="password" placeholder="비밀번호 확인" class="form-control mt-4" id="passwordCheckInput">
 				<input type="text" placeholder="이름" class="form-control mt-4" id="nameInput">
 				<input type="text" placeholder="이메일" class="form-control mt-4" id="emailInput">
-				<button type="button" class="btn btn-secondary btn-block mt-4" id="joinBtn">가입</button>
+				<button type="submit" class="btn btn-secondary btn-block mt-4" id="joinBtn">가입</button>
 			</div>
 		</section>
 		
@@ -39,6 +39,9 @@
 	<script>
 		$(document.ready(function() {
 			$("#joinBtn").on("click", function() {
+				alert("오류?")
+				
+				
 				let loginId = $("#loginInput").val();
 				let password = $("#passwordInput").val();
 				let passwordCheck = $("#passwordCheckInput").val();
@@ -55,7 +58,7 @@
 					alert("비번을 입력하세요!");
 					return ;
 				} 
-				if(password != passwordCheck ) {
+				if(password != passwordCheck) {
 					alert("비번을 확인해주세요");
 					return ;
 				}
