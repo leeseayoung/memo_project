@@ -14,17 +14,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 @MapperScan(basePackages="com.penguin.memo.*")
 public class DatabaseConfig {
 
-	  @Bean
-	    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-	        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-	        sessionFactory.setDataSource(dataSource);
-
-	        Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml");
-	        sessionFactory.setMapperLocations(res);
-
-	        return sessionFactory.getObject();
-	    }
-	
 	
 	
 }

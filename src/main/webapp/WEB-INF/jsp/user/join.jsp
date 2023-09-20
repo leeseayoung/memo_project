@@ -21,10 +21,10 @@
 				<h1 class="text-center">회원 가입</h1>
 				<input type="text" placeholder="아이디" class="form-control mt-4" id="loginInput">
 				<input type="password" placeholder="비밀번호" class="form-control mt-4" id="passwordInput">
-				<input type="password" placeholder="비밀번호 확인" class="form-control mt-4" id="passwordCheckInput">
+				<input type="password" placeholder="비밀번호 확인" class="form-control mt-4" id="passwordConfirmInput">
 				<input type="text" placeholder="이름" class="form-control mt-4" id="nameInput">
 				<input type="text" placeholder="이메일" class="form-control mt-4" id="emailInput">
-				<button type="submit" class="btn btn-secondary btn-block mt-4" id="joinBtn">가입</button>
+				<button type="button" class="btn btn-secondary btn-block mt-4" id="joinBtn">가입</button>
 			</div>
 		</section>
 		
@@ -32,34 +32,32 @@
 		
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	
 	<script>
-		$(document.ready(function() {
+		$(document).ready(function() {
+			
 			$("#joinBtn").on("click", function() {
-				alert("오류?")
-				
-				
-				let loginId = $("#loginInput").val();
+				let loginId = $("#loginIdInput").val();
 				let password = $("#passwordInput").val();
-				let passwordCheck = $("#passwordCheckInput").val();
+				let passwordConfirm = $("#passwordConfirmInput").val();
 				let name = $("#nameInput").val();
 				let email = $("#emailInput").val();
-				
 				
 				if(loginId == "") {
 					alert("아이디를 입력하세요");
 					return ;
-				} 
+				}
 				
 				if(password == "") {
-					alert("비번을 입력하세요!");
+					alert("비밀번호를 입력하세요");
 					return ;
-				} 
-				if(password != passwordCheck) {
-					alert("비번을 확인해주세요");
+				}
+				
+				if(password != passwordConfirm) {
+					alert("비밀번호가 일치하지 않습니다");
 					return ;
 				}
 				
@@ -68,13 +66,12 @@
 					return ;
 				}
 				
-				if(email == ""){
-					alert("이메일을 입력해주세용");
+				if(email == "") {
+					alert("이메일을 입력하세요");
 					return ;
 				}
 				
 				$.ajax({
-					
 					type:"post"
 					, url:"/user/join"
 					, data:{"loginId":loginId, "password":password, "name":name, "email":email}
@@ -82,7 +79,6 @@
 						
 						if(data.result == "success") {
 							location.href = "/user/login-view";
-						
 						} else {
 							alert("회원가입 실패!!");
 						}
@@ -92,14 +88,12 @@
 					, error:function() {
 						alert("회원가입 에러!!");
 					}
-				
-				
 				});
 				
 			});
 			
-			
 		});
+	
 	
 	</script>
 

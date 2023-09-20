@@ -20,14 +20,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Getter
-@Table(name="memo_user")
+@Table(name="user")
 @Entity
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="logidId")
+	@Column(name="loginId")
 	private String loginId;
 	private String password;
 	private String name;
@@ -41,5 +41,12 @@ public class User {
 	@UpdateTimestamp	
 	@Column(name="updatedAt")
 	private Date updatedAt;
+
+
+
+	
+
+
+	
 	
 }
