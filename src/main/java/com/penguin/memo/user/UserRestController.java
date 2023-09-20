@@ -22,6 +22,32 @@ public class UserRestController {
 	private UserService userService;
 	
 	
+	// 아이디 비번 일치한거 찾는 기능
+	@PostMapping("/login")
+	public Map<String, String> login(
+			@RequestParam("loginId") String loginId
+			, @RequestParam("password") String password) {
+		
+		User user = userService.getUser(loginId, password);
+		
+		
+		Map<String, String> resultMap  = new HashMap<>();
+		if(user != null) {
+			
+			resultMap.put("result", "success");
+			
+		} else {
+			resultMap.put("result", "fail");
+			
+		}
+		return resultMap;
+		
+	}
+	
+	
+	
+	
+	
 	@PostMapping("/join")
 	public Map<String, String> join(
 			@RequestParam("loginId") String loginId

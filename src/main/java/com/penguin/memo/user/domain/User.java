@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Getter
-@Table(name="user")
+@Table(name="memo_user")
 @Entity
 public class User {
 	@Id
@@ -32,6 +32,7 @@ public class User {
 	private String password;
 	private String name;
 	private String email;
+	
 	
 	@UpdateTimestamp	
 	@Column(name="createdAt", updatable=false)

@@ -40,7 +40,7 @@
 		$(document).ready(function() {
 			
 			$("#joinBtn").on("click", function() {
-				let loginId = $("#loginIdInput").val();
+				let loginId = $("#loginInput").val();
 				let password = $("#passwordInput").val();
 				let passwordConfirm = $("#passwordConfirmInput").val();
 				let name = $("#nameInput").val();
