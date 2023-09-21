@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#wrap {
+	width: 1200px;
+	height: 800px;
+	margin: 0 auto;
+}
+
+.main-section {
+    height:600px;
+}
