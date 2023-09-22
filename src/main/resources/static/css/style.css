@@ -18,6 +18,10 @@ header{
 	
 }
 
+.contents > .post-layout {
+	width: 600px;
+}
+
 footer {
 	height: 70px;
 	background-color:#dddddd;

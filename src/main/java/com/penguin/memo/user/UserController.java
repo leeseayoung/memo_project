@@ -43,21 +43,21 @@ public class UserController {
 	}
 	
 	
-	
-	
-	//로그인 페이지
-	@GetMapping("/login-view1")
-	public String login() {
-		
-		return "user/longin";
-	}
-	
-	//회원가입 페이지
-	@GetMapping("/login-view2")
-	public String login1() {
-		
-		return "user/gramlogin";
-	}
+//	//인스타그램
+//	
+//	//로그인 페이지
+//	@GetMapping("/login-view1")
+//	public String login() {
+//		
+//		return "user/longin";
+//	}
+//	
+//	//회원가입 페이지
+//	@GetMapping("/login-view2")
+//	public String login1() {
+//		
+//		return "user/gramlogin";
+//	}
 	
 	
 	

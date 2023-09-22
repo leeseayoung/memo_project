@@ -59,6 +59,7 @@ public class UserRestController {
 	
 	
 	
+	
 	@PostMapping("/join")
 	public Map<String, String> join(
 			@RequestParam("loginId") String loginId
