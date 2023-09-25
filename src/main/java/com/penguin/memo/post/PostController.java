@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.penguin.memo.post.domain.Post;
 import com.penguin.memo.post.service.PostService;
@@ -28,7 +29,7 @@ public class PostController {
 	public String postList(Model model
 			, HttpSession session) {
 		
-		int userId =  (Integer)session.getAttribute("userId");
+		int userId = (Integer)session.getAttribute("userId");
 		
 		List<Post> postList = postService.getPostList(userId);
 		
@@ -44,6 +45,21 @@ public class PostController {
 		
 		return "post/input";
 	}
+	
+	
+	@GetMapping("/detail-view")
+	public String postDetail(@RequestParam("id") int id, Model model) {
+		
+		Post post = postService.getPost(id);
+		
+		model.addAttribute("post", post);
+		
+		
+		return "post/detail";
+	}
+	
+	
+	
 	
 	
 }

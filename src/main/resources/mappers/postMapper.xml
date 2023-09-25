@@ -13,13 +13,15 @@
   			
 	  			`userId`
 				, `title`
-				, `content`			
+				, `content`
+				, `imagePath`			
   			)
   			VALUE
   			(
   				#{userId}
   				, #{title}
   				, #{content}
+  				, #{imagePath}
   			
   			)
   			
@@ -44,6 +46,36 @@
   				`id` DESC
   	
   	</select>
+  
+  
+  
+	  <select id=" selectPost" parameterType="int"
+	  resultType="com.penguin.memo.post.domain.Post">
+	  		  SELECT
+ 			 	`id`
+ 			 	, `userId`
+				, `title`
+				, `content`
+				, `imagePath`
+				, `createdAt`
+				, `updatedAt`
+			FROM	 
+  				`memo_post`
+  			WHERE
+  					`id` = #{id}
+	  
+	  
+	  
+	  
+	  
+	  
+	  </select>
+  
+  
+  
+  
+  
+  
   
   
   	

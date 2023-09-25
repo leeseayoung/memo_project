@@ -22,7 +22,9 @@
 					<input type="text" class="form-control col-10" id="titleInput">
 				</div>
 				<textarea class="form-control mt-3" rows="7" id="contentInput"></textarea>
-				<input type="file" class="mt-2">
+				
+				<input type="file" class="mt-2" id="fileInput">
+				
 				<div class="d-flex justify-content-between mt-3">
 					<a href="/post/list-view" class="btn btn-secondary">목록으로</a>
 					<button type="button" class="btn btn-secondary" id="saveBtn">저장</button>
@@ -30,7 +32,7 @@
 				
 			</div>
 		</section>
-		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
+		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 	
 	
@@ -46,42 +48,57 @@
 	
 	<script>
 	
-	$(document).ready(function() {
-		$("#saveBtn").on("click", function() {
-			let title = $("#titleInput").val();
-			let content = $("#contentInput").val();
-			
-			if(title == "") {
-				alert("제목을 입력하세요");
-				return ;
-			}
-			
-			if(content == "") {
-				alert("내용을 입력하세요");
-				return ;
-			}
-			
-			$.ajax({
-				type:"post"
-				, url:"/post/create-view"
-				, data:{"title":title, "content":content}
-				, success:function(data) {
-					if(data.result == "success") {
-						location.href = "/post/list-view";
-					} else {
-						alert("메모 작성 실패");
+		$(document).ready(function() {
+			$("#saveBtn").on("click", function() {
+				let title = $("#titleInput").val();
+				let content = $("#contentInput").val();
+				let file = $("#fileInput")[0];
+				
+				if(title == "") {
+					alert("제목을 입력하세요");
+					return ;
+				}
+				
+				if(content == "") {
+					alert("내용을 입력하세요");
+					return ;
+				}
+				
+				
+				
+				let formData = new FormData();
+				formData.append("title", title);
+				formData.append("content", content);
+				formData.append("imageFile", file.files[0]);
+				//여기까지는 성공 alert(title)
+				
+				
+				$.ajax({
+					type:"post"
+					, url:"/post/create"
+					, data:formData
+					, enctype:"multipart/form-data"  // 파일 업로드 필수 옵션
+					, processData:false  // 파일 업로드 필수 옵션
+					, contentType:false   // 파일 업로드 필수 옵션
+					, success:function(data) {
+						if(data.result == "success") {
+							location.href = "/post/list-view";
+						} else {
+							alert("메모 작성 실패");
+						}
+						
 					}
-					
-				}
-				, error:function() {
-					alert("메모 작성 에러");
-				}
+					, error:function() {
+						alert("메모 작성 에러");
+					}
+				
+				});
+				
+				
 			});
 			
+			
 		});
-		
-		
-	});
 	
 	
 	</script>

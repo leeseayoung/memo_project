@@ -16,6 +16,7 @@ public class Post {
   private Date updatedAt;
 
   
+  
   public int getUserId() {
 	return userId;
 }

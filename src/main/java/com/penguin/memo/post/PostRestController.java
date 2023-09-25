@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.penguin.memo.post.service.PostService;
 
@@ -20,15 +21,18 @@ public class PostRestController {
 	@Autowired
 	private PostService postService;
 	
+	
+	
 	@PostMapping("/create")
 	public Map<String, String> createMemo(
 			@RequestParam("title") String title
 			, @RequestParam("content") String content
+			, @RequestParam(value="imageFile", required=false) MultipartFile file
 			, HttpSession session) {
 		
 		int userId = (Integer)session.getAttribute("userId");
 		
-		int count = postService.addPost(userId, title, content);
+		int count = postService.addPost(userId, title, content, file);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
