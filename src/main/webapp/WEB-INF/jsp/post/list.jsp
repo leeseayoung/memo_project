@@ -35,8 +35,7 @@
 							<td>${post.id}</td>
 							<td>${post.title}</td>
 							
-							<td><c:fmt:formatDate vlaue=" ${post.createdAt}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>
+							<td><fmt:formatDate value="${post.createdAt}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						</tr>
 					</c:forEach>
 					

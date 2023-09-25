@@ -15,6 +15,8 @@ public interface PostRepository {
 			, @Param("title")String title
 			, @Param("content") String content);
 	
+	
+	
 	public List<Post> selectPostList(@Param("userId")int userId);
 	
 	

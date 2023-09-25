@@ -16,21 +16,16 @@ public class PostService {
 	
 	public int addPost(int userId, String title, String content) {
 		
-	    int count =	postRepository.insertPost(userId, title, content);
-		
-		return count;
-		
+		return postRepository.insertPost(userId, title, content);
 		
 	}
-	
 	
 	public List<Post> getPostList(int userId) {
 		
 		return postRepository.selectPostList(userId);
 		
-		
-		
 	}
+
 	
 	
 	

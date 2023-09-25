@@ -11,33 +11,26 @@
 </head>
 <body>
 	<div id="wrap">
-		
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
-		
 		<section class="contents d-flex justify-content-center">
-			<div class="post-layout">
-			
+			<div class="post-layout my-5">
+				
 				<h1 class="text-center">메모 입력</h1>
-				<div>
-					<label>제목 :</label>
-					<input type="text" class="from-control w-50 ml-3" id="titleInput">
+				
+				<div class="d-flex mt-3">
+					<label class="col-2">제목 : </label>
+					<input type="text" class="form-control col-10" id="titleInput">
 				</div>
-				
-				<textarea class="from-control w-100" rows="7" id="contentInput"></textarea>
-			
-				<input type="file" class="mb-2">
-			
-				<div class="d-flex justify-content-between mb-3">
-				
+				<textarea class="form-control mt-3" rows="7" id="contentInput"></textarea>
+				<input type="file" class="mt-2">
+				<div class="d-flex justify-content-between mt-3">
 					<a href="/post/list-view" class="btn btn-secondary">목록으로</a>
 					<button type="button" class="btn btn-secondary" id="saveBtn">저장</button>
 				</div>
-			
+				
 			</div>
 		</section>
-		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
-		
 	</div>
 	
 	
@@ -53,58 +46,42 @@
 	
 	<script>
 	
-		$(document).ready(function() {
-			$("#saveBtn").on("click", function() {
-				
-				
-				let title = $("#titleInput").val();
-				let content = $("#contnetInput").val();
-				
-				if(title == "") {
-					alert("제목을 입력하세요");
-					return ;
-				}
-				
-				
-				
-				if(content == "") {
-					alert("내용을 입력하세요");
-					return ;
-				}
-				
-				$.ajax({
-					type:"post"
-					, url:"/post/create"
-					, data:{"title":title, "content":content}
-					, success:function(data) {
-						if(data.result == "success"){
-							location.href = "/post/list-view";
-							
-						} else {
-							
-							alert("메모 작성 실패!!");
-							
-						}
-						
-						
+	$(document).ready(function() {
+		$("#saveBtn").on("click", function() {
+			let title = $("#titleInput").val();
+			let content = $("#contentInput").val();
+			
+			if(title == "") {
+				alert("제목을 입력하세요");
+				return ;
+			}
+			
+			if(content == "") {
+				alert("내용을 입력하세요");
+				return ;
+			}
+			
+			$.ajax({
+				type:"post"
+				, url:"/post/create-view"
+				, data:{"title":title, "content":content}
+				, success:function(data) {
+					if(data.result == "success") {
+						location.href = "/post/list-view";
+					} else {
+						alert("메모 작성 실패");
 					}
 					
-				
-					, error:function() {
-						alert("메모 작성 에러!");
-						
-					}
-					
-					
-					
-				});
-				
-				
-				
+				}
+				, error:function() {
+					alert("메모 작성 에러");
+				}
 			});
 			
-			
 		});
+		
+		
+	});
 	
 	
 	</script>
