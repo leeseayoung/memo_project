@@ -47,12 +47,12 @@
 	
 	
 	<script>
-	
 		$(document).ready(function() {
 			$("#saveBtn").on("click", function() {
 				let title = $("#titleInput").val();
 				let content = $("#contentInput").val();
-				let file = $("#fileInput")[0];
+				
+ 				let file = $("#fileInput")[0]; 
 				
 				if(title == "") {
 					alert("제목을 입력하세요");
@@ -64,14 +64,12 @@
 					return ;
 				}
 				
-				
+				//{"title":title, "content":content, }
 				
 				let formData = new FormData();
 				formData.append("title", title);
 				formData.append("content", content);
 				formData.append("imageFile", file.files[0]);
-				//여기까지는 성공 alert(title)
-				
 				
 				$.ajax({
 					type:"post"
@@ -91,15 +89,12 @@
 					, error:function() {
 						alert("메모 작성 에러");
 					}
-				
 				});
-				
 				
 			});
 			
 			
 		});
-	
 	
 	</script>
 	
