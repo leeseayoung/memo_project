@@ -54,7 +54,6 @@ public class PostController {
 		
 		model.addAttribute("post", post);
 		
-		
 		return "post/detail";
 	}
 	
