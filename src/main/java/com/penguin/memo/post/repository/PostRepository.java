@@ -39,12 +39,6 @@ public interface PostRepository {
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	public int insertPost(
 			@Param("userId")int userId
 			, @Param("title")String title
@@ -54,6 +48,8 @@ public interface PostRepository {
 	
 	
 	public List<Post> selectPostList(@Param("userId")int userId);
+	
+	
 	
 	
 	public Post selectPost(@Param("id")int id);
