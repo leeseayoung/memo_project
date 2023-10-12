@@ -20,18 +20,18 @@
 				
 				<div class="d-flex mt-3">
 					<label class="col-2">제목 : </label>
-					<input type="text" class="form-control col-10" id="titleInput" value="${post.title }">
+					<input type="text" class="form-control col-10" id="titleInput" value="${post.title}">
 				</div>
-				<textarea class="form-control mt-3" rows="7" id="contentInput">${post.content }</textarea>
+				<textarea class="form-control mt-3" rows="7" id="contentInput">${post.content}</textarea>
 				
 				<img width="100%" src="${post.imagePath }">
 				
 				<div class="d-flex justify-content-between mt-3">
 					<div>
 						<a href="/post/list-view" class="btn btn-secondary">목록으로</a>
-						<button type="button" class="btn btn-danger" >삭제</button>
+						<button type="button" class="btn btn-danger" id="deleteBtn" data-post-id="${post.id}">삭제</button>
 					</div>
-					<button type="button" class="btn btn-secondary" id="saveBtn">수정</button>
+					<button type="button" class="btn btn-secondary" id="modifyBtn" data-post-id="${post.id}">수정</button>
 				</div>
 				
 			</div>
@@ -42,6 +42,78 @@
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	
+	<script>
+		$(document).ready(function () {
+			 
+		
+			$("#deleteBtn").on("click", function() {
+				
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"delete"
+					, url:"/post/delete"
+					, data{"postId":postId}
+					, success:function(data) {
+						if(data.result == "success") {
+							location.href = "/post/list-view"
+						} else {
+							alert("삭제 실패!");
+						}
+					}
+					, error:function() {
+						alert("삭제 에러!");
+					}
+				
+				});
+			});
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			$("#modifyBtn").on("click", function() {
+				
+				let title = $("#titleInput").val();
+				let content = $("#contentInput").val();
+				let postId = $(this).data("post-id");
+				
+				
+				
+				$.ajax({
+					type:"put"
+					, url:"/post/update"
+					, data:{"postId":postId, "title":title, "content":content}
+					, success:function(data) {
+						if(data.result == "success") {							
+							location.reload();
+						} else {
+							alert("메모 수정 실패");
+						}
+						
+					}
+					, error:function() {
+						alert("메모 수정 에러");
+					}
+				});
+				
+
+			});
+			
+		});
+	
+	
+	</script>
+	
+	
+	
 	
 </body>
 </html>

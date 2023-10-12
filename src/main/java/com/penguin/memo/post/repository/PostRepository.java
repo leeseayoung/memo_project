@@ -10,6 +10,41 @@ import com.penguin.memo.post.domain.Post;
 @Repository
 public interface PostRepository {
 
+	
+	
+	//삭제3
+	public int deletePost(@Param("postId")int postId);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//업데이트 3번째(메소드)
+	public int updatePost(
+			@Param("postId") int postId
+			, @Param("title") String title
+			, @Param("contnet") String content);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public int insertPost(
 			@Param("userId")int userId
 			, @Param("title")String title

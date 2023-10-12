@@ -76,17 +76,53 @@ public class FileManager {
 		// 경로 규칙 : /images/2_2131232223/test.png
 		
 		return "/images" + directoryName + "/" + file.getOriginalFilename();		
-		
-		
-		
-		
-		
 
-		
-		
-		
-	
 	}	
+	
+	//파일 삭제 관리
+	public static boolean removeFile(String filePath) { // /images/2_2131232223/test.png
+		
+		if(filePath == null) {
+			return false;
+		}
+
+		// 이미지 파일 경로에서 /image 제거후
+		// uploade 경로를 이어 붙여 준다
+		String fullFilePath = FILE_UPLOAD_PATH + filePath.replace("/images", "");
+		//사용법
+		Path path = Paths.get(fullFilePath);
+		
+		// 파일이 존재하는지( 존재하면 true, 없으면 fail)
+		if(Files.exists(path)) {
+			
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				e.printStackTrace();
+				
+				return false;
+			}
+		} 
+		 
+		Path dirPath = path.getParent();
+		// 디렉토리가 존재하는지
+		if(Files.exists(dirPath)) {
+			try {
+				Files.delete(dirPath);
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }
